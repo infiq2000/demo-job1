@@ -1,7 +1,0 @@
-git remote add origin https://github.com/infiq2000/demo-job1.git
-
-c
-git config --global user.name "infiq2000"
-
-git config --global user.email "dathtfx11133@funix.edu.vn"
-git
