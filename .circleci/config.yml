@@ -11,7 +11,7 @@ jobs:
             - "SHA256:bQ0g019VhHUTuwOPqrIh+osQ+7bJXqKmo6juPF4ib/A"
       - run:
           name: SSH into Server
-          command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && git pull && pwd && docker-compose up --build -d'
+          command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && git pull && pwd && docker-compose -f docker-compose-build.yml build --parallel'
       - run:
           name: SSH into Server
           command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && echo $POSTGRES_HOST && docker-compose up'
