@@ -14,7 +14,7 @@ jobs:
           command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && git pull && pwd && source set_env.sh && echo $POSTGRES_HOST && docker-compose down && docker rmi -f $(docker images -a -q) && docker-compose -f docker-compose-build.yml build --parallel'
       - run:
           name: SSH into Server
-          command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && echo $POSTGRES_HOST && docker-compose up'
+          command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && source set_env.sh &&  echo $POSTGRES_HOST && docker-compose up'
 workflows:
   version: 2
   deploy_workflow:
