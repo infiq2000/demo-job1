@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appName: "Udagram",
+  appName: "Instagram",
   apiHost: "http://54.242.132.251:8080/api/v0",
 };
 
