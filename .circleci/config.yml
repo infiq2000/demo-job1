@@ -8,7 +8,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:pn12EF74HHI9GcQm5w6effqGtLofb7ENI1Jq6GCAajY"
+            - "SHA256:bQ0g019VhHUTuwOPqrIh+osQ+7bJXqKmo6juPF4ib/A"
       - run:
           name: SSH into Server
           command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && git pull && pwd && docker-compose up --build -d'
