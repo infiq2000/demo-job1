@@ -8,12 +8,12 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "34:99:28:a2:ec:3e:ca:01:23:e1:9f:cb:9f:b8:2f:59"
+            - "SHA256:pn12EF74HHI9GcQm5w6effqGtLofb7ENI1Jq6GCAajY"
       - run:
           name: SSH into Server
-          command: ssh -o StrictHostKeyChecking=no ubuntu@13.212.23.59 'cd /home/ubuntu/class-management-fe && git pull && pwd && docker-compose up --build -d'
+          command: ssh -o StrictHostKeyChecking=no ubuntu@54.242.132.251 'cd /home/ubuntu/demo-job1 && git pull && pwd && docker-compose up --build -d'
 workflows:
   version: 2
   deploy_workflow:
     jobs:
-      - PushImage
+      - deploy
