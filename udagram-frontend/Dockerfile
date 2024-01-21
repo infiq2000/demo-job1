@@ -13,4 +13,5 @@ RUN ionic build
 ### Run 
 FROM --platform=linux/amd64 nginx:stable
 #COPY www /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
