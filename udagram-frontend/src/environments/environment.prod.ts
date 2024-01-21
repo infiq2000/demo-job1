@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appName: "Instagram",
+  appName: "FACEBOOK",
   apiHost: "http://3.80.97.180:8080/api/v0",
 };
 
