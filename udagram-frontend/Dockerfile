@@ -12,6 +12,5 @@ COPY . .
 RUN ionic build
 ### Run 
 FROM --platform=linux/amd64 nginx:alpine
-COPY nginx.conf /etc/nginx/nginx.conf
 #COPY www /usr/share/nginx/html
 COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
