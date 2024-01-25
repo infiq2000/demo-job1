@@ -1,22 +1,54 @@
 version: 2.1
 
 jobs:
-  deploy:
+  PushImage:
     docker:
-      - image: circleci/python:3.8
+      - image: docker:17.05.0-ce-git
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "SHA256:bQ0g019VhHUTuwOPqrIh+osQ+7bJXqKmo6juPF4ib/A"
+      - setup_remote_docker
       - run:
-          name: SSH into Server
-          command: ssh -o StrictHostKeyChecking=no ubuntu@3.80.97.180 'cd /home/ubuntu/demo-job1 && git pull && pwd && source set_env.sh && echo $POSTGRES_HOST && docker-compose down && docker rmi -f $(docker images -a -q) && docker-compose -f docker-compose-build.yml build --parallel'
+          name: Build front-end
+          command: |
+            cd udagram-frontend
+            docker build -t datht20fpt/udagram-frontend .
       - run:
-          name: SSH into Server
-          command: ssh -o StrictHostKeyChecking=no ubuntu@3.80.97.180 'cd /home/ubuntu/demo-job1 && source set_env.sh &&  echo $POSTGRES_HOST && docker-compose up -d'
+          name: Publish Docker Image to Docker Hub
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
+            docker push datht20fpt/udagram-frontend
+      - run:
+          name: Build feed-backend
+          command: |
+            cd feed-service
+            docker build -t datht20fpt/udagram-api-feed .
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
+            docker push datht20fpt/udagram-api-feed
+      - run:
+          name: Build user-backend
+          command: |
+            cd user-service
+            docker build -t datht20fpt/udagram-api-user .
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
+            docker push datht20fpt/udagram-api-user
+      - run:
+          name: Build reverseproxy
+          command: |
+            cd reverse-proxy
+            docker build -t datht20fpt/reverseproxy .
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
+            docker push datht20fpt/reverseproxy
 workflows:
   version: 2
   deploy_workflow:
     jobs:
-      - deploy
+      - PushImage
