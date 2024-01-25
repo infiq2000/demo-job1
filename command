@@ -1,7 +1,7 @@
 psql "sslmode=require host=project3.ctxoc4n70c41.ap-southeast-2.rds.amazonaws.com port=5432 dbname=udacity user=postgres"
 aws eks describe-cluster --region ap-southeast-2 --name MyEKSCluster --query "cluster.status"
 
-aws eks update-kubeconfig --region ap-southeast-2  --name MyEKSCluster
+aws eks update-kubeconfig --region us-east-2  --name MyEKSCluster
 
 kubectl apply -f deployments/aws-secret.yml
 kubectl apply -f deployments/env-secret.yml
