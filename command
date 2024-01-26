@@ -31,3 +31,7 @@ kubectl delete service --all
 kubectl get deployments
 
 kubectl expose deployment reverseproxy --type=LoadBalancer --name=publicreverseproxy
+
+kubectl set image deployment frontend udagram-frontend=datht20fpt/udagram-frontend:v2
+
+cat ~/.aws/credentials | base64
