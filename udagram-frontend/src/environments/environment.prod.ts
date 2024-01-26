@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appName: "FACEBOOK",
+  appName: "INSTAGRAM",
   apiHost:
     "http://a49bcfe62e7734f3cb8ed2e739c07c66-1173052963.us-east-1.elb.amazonaws.com:8080/api/v0",
 };

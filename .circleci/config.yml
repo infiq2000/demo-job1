@@ -15,6 +15,7 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
+            docker tag udagram-frontend datht20fpt/udagram-frontend:v1
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
             docker push datht20fpt/udagram-frontend
       - run:
