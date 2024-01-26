@@ -11,7 +11,7 @@ jobs:
           name: Build front-end
           command: |
             cd udagram-frontend
-            docker build -t datht20fpt/udagram-frontend .
+            docker build -t udagram-frontend .
             docker tag udagram-frontend datht20fpt/udagram-frontend:v1
             docker images
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
