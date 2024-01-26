@@ -12,14 +12,13 @@ jobs:
           command: |
             cd udagram-frontend
             docker build -t udagram-frontend .
-            docker tag udagram-frontend datht20fpt/udagram-frontend:v2
+            docker tag udagram-frontend datht20fpt/udagram-frontend:v3
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
-            docker push datht20fpt/udagram-frontend:v2
+            docker push datht20fpt/udagram-frontend:v3
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "test"
-
       - run:
           name: Build feed-backend
           command: |
