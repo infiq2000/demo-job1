@@ -13,6 +13,7 @@ jobs:
             cd udagram-frontend
             docker build -t datht20fpt/udagram-frontend .
             docker tag udagram-frontend datht20fpt/udagram-frontend:v1
+            docker images
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
             docker push datht20fpt/udagram-frontend:v1
       - run:
